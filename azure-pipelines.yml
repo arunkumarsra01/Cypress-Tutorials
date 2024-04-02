@@ -17,4 +17,11 @@ steps:
 
 - script: |
     npm install
-    npm run cli
+    displayName:'npm install'
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '*.xml'
+    searchFolder: '$(System.DefaultWorkingDirectory)/cypress/reports/junit'
+    mergeTestResults: true
+    testRunTitle: 'Test report'
